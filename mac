@@ -1,0 +1,106 @@
+#!/bin/sh
+
+## Idea taken from the folks at Thoughtbot with their thoughtbot/laptop project
+## Thanks!
+
+## Allister Antosik
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s "$(which zsh)"
+
+# Homebrew
+
+## Install homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+## Fix permissions issues for homebrew
+sudo chown -R $(whoami):admin /usr/local
+sudo chown -R $(whoami) /Library/Caches/Homebrew/
+
+## Update Homebrew
+brew update
+
+## Install brews
+brew install git
+brew install vim
+brew install tmux
+brew install reattach-to-user-namespace
+brew install qt
+brew install node
+brew install rbenv
+brew install ruby-build
+brew install libyaml
+
+# Ruby
+
+## Get latest version and install through rbenv
+ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+eval "$(rbenv init - zsh)"
+if ! rbenv versions | grep -Fq "$ruby_version"; then
+  rbenv install -s "$ruby_version"
+fi
+
+## Set as global and current
+rbenv global "$ruby_version"
+rbenv shell "$ruby_version"
+
+## Rehash to be safe
+rbenv rehash
+
+## Install bundler
+gem install bundler
+
+## Get bundler to use all cores, vroooooooom
+number_of_cores=$(sysctl -n hw.ncpu)
+bundle config --global jobs $((number_of_cores - 1))
+
+# Brew Cask
+brew tap caskroom/cask
+brew install brew-cask
+
+## Install our apps
+brew cask install google-chrome
+brew cask install iterm2
+brew cask install atom
+brew cask install the-unarchiver
+brew cask install flux
+
+# Powerline Fonts
+git clone https://github.com/powerline/fonts.git
+./fonts/install.sh
+rm -rf fonts
+
+# Git config
+cp dotfiles/gitconfig.local ~/.gitconfig
+cp dotfiles/gitignore.local ~/.gitignore
+cp dotfiles/gitmessage.local ~/.gitmessage
+
+# Linters
+brew install tidy-html5
+npm install -g csslint
+npm install -g eslint
+npm install -g eslint-plugin-react
+npm install -g js-yaml
+gem install puppet-lint
+gem install rubocop
+npm i -g eslint
+
+# Vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+cp dotfiles/vimrc.local ~/.vimrc
+vim +PluginInstall +qall
+
+# Tmux
+cp dotfiles/tmux.conf.local ~/.tmux.conf
+
+# Install atom packages
+apm install linter
+apm install linter-csslint
+apm install linter-tidy
+apm install linter-eslint
+apm install linter-puppet-lint
+apm install linter-rubocop
+apm install emmet
+apm install pigments
+apm install merge-conflicts
