@@ -94,6 +94,9 @@ vim +PluginInstall +qall
 # Tmux
 cp dotfiles/tmux.conf.local ~/.tmux.conf
 
+# zshrc
+cp dotfiles/zshrc.local ~/.zshrc
+
 # Install atom packages
 apm install linter
 apm install linter-csslint
