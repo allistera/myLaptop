@@ -15,8 +15,10 @@ Finally it moves over my .vimrc, tmux.conf and zshrc, as well as git template fi
 Install Mac
 -------
 
+```
 $ sudo chmod +x mac
 $ ./mac
+```
 
 Install Linux
 -------
@@ -29,5 +31,7 @@ Note you must have the following packages installed:
 * Lnav
 * Peco
 
+```
 $ sudo chmod +x linux
 $ ./linux
+```
