@@ -23,6 +23,9 @@ brew install vim
 brew install tmux
 brew install lnav
 brew install peco
+brew install prettyping
+brew install diff-so-fancy
+
 
 # Powerline Fonts
 git clone https://github.com/powerline/fonts.git
@@ -33,6 +36,18 @@ rm -rf fonts
 cp -rf dotfiles/gitconfig.local ~/.gitconfig
 cp -rf dotfiles/gitignore.local ~/.gitignore
 cp -rf dotfiles/gitmessage.local ~/.gitmessage
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --global color.ui true
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+git config --global color.diff.meta       "yellow"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.commit     "yellow bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
+git config --global color.diff.whitespace "red reverse"
 
 # Vim
 rm -rf ~/.vim/bundle/Vundle.vim
@@ -50,6 +65,7 @@ cp -rf dotfiles/zshrc.local ~/.zshrc
 # Install Peco for ZSH
 rm -rf ~/.oh-my-zsh/custom/plugins/zsh-peco-history
 git clone https://github.com/jimeh/zsh-peco-history.git ~/.oh-my-zsh/custom/plugins/zsh-peco-history
+
 
 echo "DONE!"
 
