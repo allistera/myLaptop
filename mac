@@ -25,7 +25,7 @@ brew install lnav
 brew install peco
 brew install prettyping
 brew install diff-so-fancy
-
+brew install zsh-autosuggestions
 
 # Powerline Fonts
 git clone https://github.com/powerline/fonts.git

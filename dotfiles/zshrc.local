@@ -54,3 +54,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ping='prettyping --nolegend'
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
