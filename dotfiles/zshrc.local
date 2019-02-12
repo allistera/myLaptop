@@ -56,3 +56,5 @@ source $ZSH/oh-my-zsh.sh
 alias ping='prettyping --nolegend'
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Remove duration of each command
+unset RPROMPT
