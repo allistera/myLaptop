@@ -31,7 +31,7 @@ set -g status-right ''
 # From: https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-dark.conf
 
 # default statusbar colors
-set-option -g status-bg white #base2
+set-option -g status-bg black #base2
 set-option -g status-fg yellow #yellow
 set-option -g status-attr default
 
